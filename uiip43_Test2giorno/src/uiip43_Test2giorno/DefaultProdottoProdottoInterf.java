@@ -74,7 +74,7 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 		}
 		System.out.println("Il conto totale della spesa è " + totale + " €");
 		
-		LocalDate blackFridayDate = LocalDate.of(2019, 11, 19);
+		LocalDate blackFridayDate = LocalDate.of(2019, 11, 29);
 		
 		if (date.compareTo(blackFridayDate) == 0) {
 			System.out.println("Oggi è il BlackFriday! Ottieni uno sconto del 10%.");
