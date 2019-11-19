@@ -17,7 +17,7 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
 	private String dataFile = "/data/prodotti.dat";
 	private LocalDate data = LocalDate.of(2019, 11, 29);
-	double sconto;
+	double scontoBlack;
 
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
@@ -74,8 +74,8 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
 		System.out.println("Il conto totale della spesa è " + totale + " €");
-		sconto = blackFriday(totale);
-		totale -= sconto;
+		scontoBlack = blackFriday(totale);
+		totale -= scontoBlack;
 		System.out.println("Il conto totale della spesa scontato del black F. è " + totale + " €");
 		return lista;
 	}
