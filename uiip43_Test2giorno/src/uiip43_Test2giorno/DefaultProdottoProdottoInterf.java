@@ -1,3 +1,6 @@
+/**
+ * mettere i javadoc
+ */
 package uiip43_Test2giorno;
 
 import java.io.BufferedInputStream;
@@ -14,7 +17,9 @@ import java.util.List;
 
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
+
 	private String dataFile = "/data/prodotti.dat";
+
 
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
@@ -62,15 +67,33 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			} catch (EOFException e) {
 			}
 		} 
-		finally {	
+
+		finally {
 			in.close();
 		}
 		
 		for (Prodotto p:lista) {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
-		System.out.println("Il conto totale della spesa è " + totale + " €");
+		System.out.println("Il conto totale della spesa ï¿½ " + totale + " ï¿½");
 		return lista;
+	}
+	
+	public List<Prodotto> inizializzaLista() {
+		ArrayList<Prodotto> list = new ArrayList<>();
+		
+		Prodotto prodotto1 = new Prodotto("Sale",0.69,15);
+		Prodotto prodotto2 = new Prodotto("Carne", 10.0 , 10);
+		Prodotto prodotto3 = new Prodotto("Latte", 0.80, 12);
+		Prodotto prodotto4 = new Prodotto("Sugo", 1.50, 30);
+		Prodotto prodotto5 = new Prodotto("Salumi", 23.5,10);
+		
+		list.add(prodotto1);
+		list.add(prodotto2);
+		list.add(prodotto3);
+		list.add(prodotto4);
+		list.add(prodotto5);
+		return list;
 	}
 
 }
