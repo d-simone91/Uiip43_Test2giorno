@@ -1,3 +1,6 @@
+/**
+ * mettere i javadoc
+ */
 package uiip43_Test2giorno;
 
 import java.io.BufferedInputStream;
@@ -9,16 +12,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
-	private static final double UIIP43 = 0;
-	private String dataFile = "/data/prodotti.dat";
+	private String dataFile = "C:/data/prodotti.dat";
     public  static final String codice = "UIIP43" ;
-   
+    private LocalDate date = LocalDate.now();
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
 
@@ -65,15 +68,15 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			} catch (EOFException e) {
 			}
 		} 
-		finally {	
+
+		finally {
 			in.close();
 		}
 		
 		for (Prodotto p:lista) {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
-		
-		
+				
 		System.out.println("inserisci codice promozionale");
 		Scanner input=new Scanner(System.in);
 		String codice1 = input.nextLine();
@@ -84,11 +87,33 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 		} else {
 			System.out.println("Il codice sconto non è corretto");
 		}
-		
-		
 		System.out.println("Il conto totale della spesa è " + totale + " €");
+		
+		LocalDate blackFridayDate = LocalDate.of(2019, 11, 19);
+		
+		if (date.compareTo(blackFridayDate) == 0) {
+			System.out.println("Oggi è il BlackFriday! Ottieni uno sconto del 10%.");
+			totale = totale - totale / 100 * 10;
+			System.out.println("Il totale da pagare risulta ora: " + totale + "€");
+		}
+
 		return lista;
 	}
 	
-	
+	public List<Prodotto> inizializzaLista() {
+		ArrayList<Prodotto> list = new ArrayList<>();
+		
+		Prodotto prodotto1 = new Prodotto("Sale",0.69,15);
+		Prodotto prodotto2 = new Prodotto("Carne", 10.0 , 10);
+		Prodotto prodotto3 = new Prodotto("Latte", 0.80, 12);
+		Prodotto prodotto4 = new Prodotto("Sugo", 1.50, 30);
+		Prodotto prodotto5 = new Prodotto("Salumi", 23.5,10);
+		
+		list.add(prodotto1);
+		list.add(prodotto2);
+		list.add(prodotto3);
+		list.add(prodotto4);
+		list.add(prodotto5);
+		return list;
+	}
 }
