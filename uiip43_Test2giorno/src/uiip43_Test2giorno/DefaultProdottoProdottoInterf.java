@@ -73,21 +73,17 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
 		
+		
+		System.out.println("inserisci codice promozionale");
 		Scanner input=new Scanner(System.in);
-		String codice1 = input.next();
-		public String  compare(codice) {
-			
-			if (codice.compareTo(codice1)) {
-				
-			} else if () < ) {
-				
-			} else {
-				
-			}
-
+		String codice1 = input.nextLine();
 		
+		if(codice1.equals(codice)) {
+			totale = totale - 20.0;
+			System.out.println("Il codice sconto è corretto verrà applicato un scono di 20 euro");
+		} else {
+			System.out.println("Il codice sconto non è corretto");
 		}
-		
 		
 		
 		System.out.println("Il conto totale della spesa è " + totale + " €");
