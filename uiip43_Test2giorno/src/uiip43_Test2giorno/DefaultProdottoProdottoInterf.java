@@ -9,12 +9,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
-	private String dataFile = "/data/prodotti.dat";
+	private String dataFile = "C:/data/prodotti.dat";
+	private LocalDate date = LocalDate.now();
 
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
@@ -70,6 +73,15 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
 		System.out.println("Il conto totale della spesa è " + totale + " €");
+		
+		LocalDate blackFridayDate = LocalDate.of(2019, 11, 19);
+		
+		if (date.compareTo(blackFridayDate) == 0) {
+			System.out.println("Oggi è il BlackFriday! Ottieni uno sconto del 10%.");
+			totale = totale - totale / 100 * 10;
+			System.out.println("Il totale da pagare risulta ora: " + totale + "€");
+		}
+		
 		return lista;
 	}
 

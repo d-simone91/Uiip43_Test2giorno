@@ -18,6 +18,8 @@ public class TestProdotto {
 		Prodotto prodotto4 = new Prodotto("Sugo", 1.50, 30);
 		Prodotto prodotto5 = new Prodotto("Salumi", 23.5,10);
 		
+		
+		
 		List.add(prodotto1);
 		List.add(prodotto2);
 		List.add(prodotto3);
@@ -39,5 +41,7 @@ public class TestProdotto {
 		
 
 	}
+	
+	
 
 }
