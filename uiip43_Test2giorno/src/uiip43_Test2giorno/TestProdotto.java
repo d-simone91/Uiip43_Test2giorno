@@ -25,7 +25,6 @@ public class TestProdotto {
 		List.add(prodotto5);
 		
 		ProdottoIterf<Prodotto> prodottoI = new DefaultProdottoProdottoInterf();
-		System.out.println("Sto per salvare la lista della spesa!");
 		prodottoI.save(List);
 		
 		
@@ -36,8 +35,9 @@ public class TestProdotto {
 		for(int i=0; i<List2.size();i++) {
 			System.out.println(List2.get(i).toString());
 			}
-		
 
 	}
+	
+	
 
 }

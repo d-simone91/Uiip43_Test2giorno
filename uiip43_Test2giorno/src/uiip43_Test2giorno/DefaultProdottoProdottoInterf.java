@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,8 +70,22 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 		for (Prodotto p:lista) {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
+		
+		totale = blackFriday(totale);
 		System.out.println("Il conto totale della spesa è " + totale + " €");
 		return lista;
+	}
+	
+	public double blackFriday(double totale) {
+		double discount = 0.1;
+		
+		LocalDate today = LocalDate.now();
+		
+		if(today.isEqual(LocalDate.of(2019, 11, 29))) {
+			totale = totale - (totale * discount);
+		}
+		
+		return totale;
 	}
 
 }
