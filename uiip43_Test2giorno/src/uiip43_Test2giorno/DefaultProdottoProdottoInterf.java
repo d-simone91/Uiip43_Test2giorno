@@ -18,7 +18,7 @@ import java.util.List;
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
 
-	private String dataFile = "/Users/fabiosessa/Desktop/prodotti.dat";
+	private String dataFile = "/data/prodotti.dat";
 
 
 	@Override
