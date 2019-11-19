@@ -15,20 +15,19 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
 
-public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto>{
-	
 	private String dataFile = "/Users/fabiosessa/Desktop/prodotti.dat";
+
 
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
-		
+
 		ObjectOutputStream out = null;
-		
+
 		try {
-			
-			
+
 			try {
 				out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(dataFile)));
 			} catch (IOException e) {
@@ -37,54 +36,46 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto>{
 			}
 
 			for (int i = 0; i < List.size(); i++) {
-				
+
 				out.writeObject(List.get(i));
-				
-				
-				
+
 			}
 		} finally {
 			out.close();
 		}
 
-		
 	}
 
 	@Override
 	public List<Prodotto> read() throws FileNotFoundException, IOException, ClassNotFoundException {
-		
-		
-		
-		double totale=0;
+
+		double totale = 0;
 		ObjectInputStream in = null;
 		List<Prodotto> lista = new ArrayList<>();
 		try {
 			in = new ObjectInputStream(new BufferedInputStream(new FileInputStream(dataFile)));
-            
+
 			try {
 				while (true) {
+
 					Prodotto prodotto = (Prodotto) in.readObject();
-					lista.add(prodotto);
-					
-					for (int i=0; i<lista.size();i++) {
-						lista.get(i).getNome();
-						lista.get(i).getPrezzo();
-						lista.get(i).getUnita();
-						totale=totale+(lista.get(i).getPrezzo()*lista.get(i).getUnita());
-					}
-					
-					
-				} 
+					lista.add(prodotto);					
+				}
+
 				
 				
 			} catch (EOFException e) {
 			}
 		} 
+
 		finally {
-			
-			System.out.println("Il conto totale della spesa �" + totale);
 			in.close();
 		}
+		
+		for (Prodotto p:lista) {
+			totale += (p.getPrezzo()*p.getUnita());
+		}
+		System.out.println("Il conto totale della spesa � " + totale + " �");
 		return lista;
 	}
 	
