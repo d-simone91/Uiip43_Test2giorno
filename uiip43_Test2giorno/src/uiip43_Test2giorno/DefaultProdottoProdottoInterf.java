@@ -9,16 +9,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
 	private String dataFile = "/data/prodotti.dat";
+	private LocalDate data = LocalDate.of(2019, 11, 29);
+	double scontoBlack;
 
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
 
+		
 		ObjectOutputStream out = null;
 
 		try {
@@ -70,7 +74,22 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
 		System.out.println("Il conto totale della spesa è " + totale + " €");
+		scontoBlack = blackFriday(totale);
+		totale -= scontoBlack;
+		System.out.println("Il conto totale della spesa scontato del black F. è " + totale + " €");
 		return lista;
+	}
+	
+	public double blackFriday(double totale) {
+		double sconto = 0.0;
+		if(data.equals(LocalDate.of(2019, 11, 29))) {
+			sconto = ((totale/100)*10);
+		   System.out.println("Applichiamo lo sconto del 10% perchè è il black F.");
+		}else {
+			System.out.println("Nessuno sconto per il black F.");
+		}
+		return sconto;
+		
 	}
 
 }
