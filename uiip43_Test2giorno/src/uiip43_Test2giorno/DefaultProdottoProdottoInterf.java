@@ -15,12 +15,13 @@ import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
 	private String dataFile = "C:/data/prodotti.dat";
-	private LocalDate date = LocalDate.now();
-
+    public  static final String codice = "UIIP43" ;
+    private LocalDate date = LocalDate.now();
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
 
@@ -75,10 +76,20 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 		for (Prodotto p:lista) {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
+				
+		System.out.println("inserisci codice promozionale");
+		Scanner input=new Scanner(System.in);
+		String codice1 = input.nextLine();
 		
+		if(codice1.equals(codice)) {
+			totale = totale - 20.0;
+			System.out.println("Il codice sconto è corretto verrà applicato un scono di 20 euro");
+		} else {
+			System.out.println("Il codice sconto non è corretto");
+		}
 		System.out.println("Il conto totale della spesa è " + totale + " €");
 		
-		LocalDate blackFridayDate = LocalDate.of(2019, 11, 29);
+		LocalDate blackFridayDate = LocalDate.of(2019, 11, 19);
 		
 		if (date.compareTo(blackFridayDate) == 0) {
 			System.out.println("Oggi è il BlackFriday! Ottieni uno sconto del 10%.");
@@ -105,5 +116,4 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 		list.add(prodotto5);
 		return list;
 	}
-
 }
