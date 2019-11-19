@@ -1,3 +1,6 @@
+/**
+ * mettere i javadoc
+ */
 package uiip43_Test2giorno;
 
 import java.io.BufferedInputStream;
@@ -15,7 +18,8 @@ import java.util.List;
 
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
-	private String dataFile = "/data/prodotti.dat";
+	private String dataFile = "C:/data/prodotti.dat";
+	private LocalDate date = LocalDate.now();
 
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
@@ -63,7 +67,8 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			} catch (EOFException e) {
 			}
 		} 
-		finally {	
+
+		finally {
 			in.close();
 		}
 		
@@ -71,21 +76,35 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
 		
-		totale = blackFriday(totale);
 		System.out.println("Il conto totale della spesa è " + totale + " €");
+		
+		LocalDate blackFridayDate = LocalDate.of(2019, 11, 29);
+		
+		if (date.compareTo(blackFridayDate) == 0) {
+			System.out.println("Oggi è il BlackFriday! Ottieni uno sconto del 10%.");
+			totale = totale - totale / 100 * 10;
+			System.out.println("Il totale da pagare risulta ora: " + totale + "€");
+		}
+
 		return lista;
 	}
 	
-	public double blackFriday(double totale) {
-		double discount = 0.1;
+	public List<Prodotto> inizializzaLista() {
+		ArrayList<Prodotto> list = new ArrayList<>();
 		
-		LocalDate today = LocalDate.now();
+		Prodotto prodotto1 = new Prodotto("Sale",0.69,15);
+		Prodotto prodotto2 = new Prodotto("Carne", 10.0 , 10);
+		Prodotto prodotto3 = new Prodotto("Latte", 0.80, 12);
+		Prodotto prodotto4 = new Prodotto("Sugo", 1.50, 30);
+		Prodotto prodotto5 = new Prodotto("Salumi", 23.5,10);
 		
-		if(today.isEqual(LocalDate.of(2019, 11, 29))) {
-			totale = totale - (totale * discount);
-		}
-		
-		return totale;
+		list.add(prodotto1);
+		list.add(prodotto2);
+		list.add(prodotto3);
+		list.add(prodotto4);
+		list.add(prodotto5);
+		return list;
+
 	}
 
 }
