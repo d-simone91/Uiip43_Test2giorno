@@ -11,11 +11,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 
+	private static final double UIIP43 = 0;
 	private String dataFile = "/data/prodotti.dat";
-
+    public  static final String codice = "UIIP43" ;
+   
 	@Override
 	public void save(List<Prodotto> List) throws IOException {
 
@@ -69,8 +72,27 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto> {
 		for (Prodotto p:lista) {
 			totale += (p.getPrezzo()*p.getUnita());
 		}
+		
+		Scanner input=new Scanner(System.in);
+		String codice1 = input.next();
+		public String  compare(codice) {
+			
+			if (codice.compareTo(codice1)) {
+				
+			} else if () < ) {
+				
+			} else {
+				
+			}
+
+		
+		}
+		
+		
+		
 		System.out.println("Il conto totale della spesa è " + totale + " €");
 		return lista;
 	}
-
+	
+	
 }
