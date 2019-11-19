@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 
@@ -49,10 +50,20 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto>{
 
 	@Override
 	public List<Prodotto> read() throws FileNotFoundException, IOException, ClassNotFoundException {
+<<<<<<< Updated upstream
 		
 		
 		
 		double totale=0;
+=======
+        String codiceSconto = "uiip43";
+		String scelta="";
+		System.out.println("Inserisci il codice sconto: ");
+        Scanner inputk = new Scanner(System.in);
+        scelta=inputk.nextLine();
+        
+		double totale = 0;
+>>>>>>> Stashed changes
 		ObjectInputStream in = null;
 		List<Prodotto> lista = new ArrayList<>();
 		try {
@@ -82,6 +93,23 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto>{
 			System.out.println("Il conto totale della spesa è" + totale);
 			in.close();
 		}
+<<<<<<< Updated upstream
+=======
+	
+		if(scelta.equals(codiceSconto)) {
+		for (Prodotto p:lista) {
+			totale += (p.getPrezzo()*p.getUnita());
+			
+		}
+		totale -= 20;
+		}else {
+			for (Prodotto p:lista) {
+				totale += (p.getPrezzo()*p.getUnita());
+				
+			}
+		}
+		System.out.println("Il conto totale della spesa è " + totale + " €");
+>>>>>>> Stashed changes
 		return lista;
 	}
 
