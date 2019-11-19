@@ -61,27 +61,23 @@ public class DefaultProdottoProdottoInterf implements ProdottoIterf<Prodotto>{
 			try {
 				while (true) {
 					Prodotto prodotto = (Prodotto) in.readObject();
-					lista.add(prodotto);
-					
-					for (int i=0; i<lista.size();i++) {
-						lista.get(i).getNome();
-						lista.get(i).getPrezzo();
-						lista.get(i).getUnita();
-						totale=totale+(lista.get(i).getPrezzo()*lista.get(i).getUnita());
-					}
-					
-					
-				} 
+					lista.add(prodotto);					
+				}
+
 				
 				
 			} catch (EOFException e) {
 			}
 		} 
-		finally {
-			
-			System.out.println("Il conto totale della spesa è" + totale);
+		finally {	
 			in.close();
 		}
+		
+		for (Prodotto p:lista) {
+			totale += (p.getPrezzo()*p.getUnita());
+		}
+		System.out.println("Il conto totale della spesa è " + totale + " €");
+		
 		return lista;
 	}
 
